@@ -157,7 +157,15 @@ def copy_to_clipboard(text):  # pragma: no cover
 
         xsel_cmd = ["xsel"]
         success = _call_command(xsel_cmd, text)
-        return success
+        if success:
+            return True
+
+        wayland_cmd = ["wl-copy"]
+        success = _call_command(wayland_cmd, text)
+        if success:
+            return True
+
+        return False
 
     def _do_osx_clipboard(text):
         pbcopy_cmd = ["pbcopy"]
