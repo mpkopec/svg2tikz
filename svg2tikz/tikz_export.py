@@ -155,7 +155,7 @@ def copy_to_clipboard(text):  # pragma: no cover
         if success:
             return True
 
-        xsel_cmd = ["xsel"]
+        xsel_cmd = ["xsel", "--clipboard"]
         success = _call_command(xsel_cmd, text)
         if success:
             return True
